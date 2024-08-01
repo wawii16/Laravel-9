@@ -2,12 +2,16 @@
 
 namespace App\Services;
 
-use App\Repositories\MarketRepository;
+use App\Repositories\MarketRepositoryInterface;
 
 use Illuminate\Support\Facades\File;
 
 class FileUploadService
 {
+    public function __construct(
+        protected MarketRepositoryInterface $marketRepository,
+    ) {
+    }
     public function uploadPhoto($photo)
     {
         $filePath = public_path('uploads');
@@ -17,10 +21,11 @@ class FileUploadService
         return $file_name;
     }
 
-    public function deletePhoto($data, $id)
+    public function deletePhoto($fileName)
     {
-        $delete = $this->marketRepository->getMarketById($id);
-        File::delete(public_path('uploads/' . $data[photo]));
-        $delete->delete();
+        $filePath = public_path('uploads/' . $fileName);
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+        }
     }
 }

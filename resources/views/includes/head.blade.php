@@ -3,4 +3,4 @@
 <title>Document</title>
 <!-- Head content -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<link href="{{ asset('./css/app.css') }}" rel="stylesheet">
