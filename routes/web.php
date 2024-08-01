@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
 Route::post('login_post', [AuthController::class, 'login_post']);
 
@@ -24,7 +28,7 @@ Route::post('registration_post', [AuthController::class, 'registration_post']);
 
 Route::get('logout', [AuthController::class, 'logout']);
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->prefix('/admin')->group(function () {
     Route::get('/', [MarketController::class, 'create'])->middleware('auth');
 
     Route::post('/add_market', [MarketController::class, 'store'])->name('market.add');
