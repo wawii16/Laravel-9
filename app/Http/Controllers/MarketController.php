@@ -32,8 +32,9 @@ class MarketController extends Controller
      */
     public function create(Request $request)
     {
+        $pageTitle = 'Admin';
         $markets = $this->marketService->getAllMarkets();
-        return view('market.index', compact('markets'));
+        return view('market.index', compact('markets', 'pageTitle'));
     }
 
     /**
@@ -50,7 +51,8 @@ class MarketController extends Controller
             'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        return $this->marketService->create($validatedData);
+        $this->marketService->create($validatedData);
+        return redirect('/admin');
     }
 
     /**
@@ -101,7 +103,7 @@ class MarketController extends Controller
 
         $market = $this->marketService->update($validatedData, $id);
 
-        return redirect('/');
+        return redirect('/admin');
     }
 
     /**
@@ -113,6 +115,6 @@ class MarketController extends Controller
     public function destroy($id)
     {
         $this->marketService->delete($id);
-        return redirect('/');
+        return redirect('/admin');
     }
 }
