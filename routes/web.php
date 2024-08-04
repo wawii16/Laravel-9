@@ -28,13 +28,21 @@ Route::post('registration_post', [AuthController::class, 'registration_post']);
 
 Route::get('logout', [AuthController::class, 'logout']);
 
-Route::middleware('auth')->prefix('/admin')->group(function () {
-    Route::get('/', [MarketController::class, 'create'])->middleware('auth');
+// Route::middleware('auth')->prefix('/profile')->group(function () {
 
-    Route::post('/add_market', [MarketController::class, 'store'])->name('market.add');
+//     Route::put('/{id}', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::get('/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+// });
 
-    Route::put('/add_market/{id}', [MarketController::class, 'update'])->name('market.update');
-    Route::get('/add_market/{id}', [MarketController::class, 'edit'])->name('admin.edit_berita');
+// Route::middleware('auth')->prefix('/admin')->group(function () {
+//     Route::get('/', [MarketController::class, 'create'])->middleware('auth');
 
-    Route::delete('/add_market/{id}', [MarketController::class, 'destroy'])->name('market.destroy');
-});
+//     Route::post('/add_market', [MarketController::class, 'store'])->name('market.add');
+
+//     Route::put('/add_market/{id}', [MarketController::class, 'update'])->name('market.update');
+//     Route::get('/add_market/{id}', [MarketController::class, 'edit'])->name('admin.edit_berita');
+
+//     Route::delete('/add_market/{id}', [MarketController::class, 'destroy'])->name('market.destroy');
+// });
+
+Route::resource('markets', MarketController::class)->middleware('auth');

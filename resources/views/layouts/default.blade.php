@@ -2,7 +2,7 @@
 <html lang="en" class="h-full">
 
 <head>
-    <title>@yield('title', 'Dashboard')</title>
+    <title>@yield('$pageTitle', 'Dashboard')</title>
 
     @include('includes.head')
 </head>

@@ -1,8 +1,7 @@
 @extends('layouts.default')
 
-@section('title', 'Admin')
 
-@section('pageTitle', 'Admin')
+@section('$pageTitle', 'Tambah Market')
 
 @section('content')
 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -15,7 +14,7 @@
         </ul>
     </div>
     @endif
-    <form action="{{ route('market.add') }}" class="max-w-sm mx-auto" method="post" enctype="multipart/form-data">
+    <form action="{{ route('markets.store') }}" class="max-w-sm mx-auto" method="post" enctype="multipart/form-data">
         @csrf
 
 
@@ -32,9 +31,7 @@
         <div class="mt-3 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help"></div>
 
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tambah</button>
-        <p>
-            Dont have account?<span><a href="/regist"> Register</a></span>
-        </p>
+
 
 
 
@@ -54,12 +51,10 @@
             </thead>
 
             <tbody class="divide-y divide-neutral-800">
-                @php
-                $counter = 1; // Inisialisasi variabel counter
-                @endphp
-                @foreach ($markets as $market)
+
+                @foreach ($markets as $key => $market)
                 <tr>
-                    <td class="w-10 py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ $counter++ }}</td>
+                    <td class="w-10 py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ $key + 1 }}</td>
                     <td class="py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ $market->store_name }}</td>
                     <td class="py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ $market->owner }}</td>
                     <td class="py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800 text-center">
@@ -67,10 +62,10 @@
                     </td>
                     <td class="py-1 px-2 text-xs sm:text-sm whitespace-nowrap border-b border-neutral-800 text-center">
                         <div class="flex justify-center items-center space-x-2">
-                            <a href="{{ route('admin.edit_berita', ['id' => $market->id]) }}" class="bg-yellow-600 hover:bg-yellow-800 text-white font-bold py-1 px-2 sm:py-1 sm:px-3 rounded">
+                            <a href="{{ route('markets.edit', ['market' => $market->id]) }}" class="bg-yellow-600 hover:bg-yellow-800 text-white font-bold py-1 px-2 sm:py-1 sm:px-3 rounded">
                                 Edit
                             </a>
-                            <form action="{{ route('market.destroy', $market->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <form action="{{ route('markets.destroy', $market->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-2 sm:py-1 sm:px-3 rounded">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Market;
 use App\Http\Requests\StoreMarketRequest;
 use App\Http\Requests\UpdateMarketRequest;
+use App\Http\Resources\MarketResource;
 use App\Services\MarketService;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,9 @@ class MarketController extends Controller
     }
     public function index()
     {
+        $pageTitle = 'Tambah Market';
+        $markets = $this->marketService->getAllMarkets();
+        return view('market.index', compact('markets', 'pageTitle'));
     }
 
     /**
@@ -32,9 +36,9 @@ class MarketController extends Controller
      */
     public function create(Request $request)
     {
-        $pageTitle = 'Admin';
-        $markets = $this->marketService->getAllMarkets();
-        return view('market.index', compact('markets', 'pageTitle'));
+        // $pageTitle = 'Admin';
+        // $markets = $this->marketService->getAllMarkets();
+        // return view('market.index', compact('markets', 'pageTitle'));
     }
 
     /**
@@ -74,13 +78,15 @@ class MarketController extends Controller
      */
     public function edit($id)
     {
+        $pageTitle = 'Edit Market';
+
         $market = $this->marketService->getMarketById($id);
 
         if (!$market) {
-            return redirect()->route('market.index')->with('error', 'Market not found.');
+            return redirect()->route('markets.index')->with('error', 'Market not found.');
         }
 
-        return view('market.edit', compact('market'));
+        return view('market.edit', compact('market', 'pageTitle'));
     }
 
 
@@ -103,7 +109,7 @@ class MarketController extends Controller
 
         $market = $this->marketService->update($validatedData, $id);
 
-        return redirect('/admin');
+        return redirect('/markets');
     }
 
     /**
