@@ -56,7 +56,7 @@ class MarketController extends Controller
         ]);
 
         $this->marketService->create($validatedData);
-        return redirect('/admin');
+        return redirect('/markets');
     }
 
     /**
@@ -121,6 +121,6 @@ class MarketController extends Controller
     public function destroy($id)
     {
         $this->marketService->delete($id);
-        return redirect('/admin');
+        return redirect('/markets');
     }
 }

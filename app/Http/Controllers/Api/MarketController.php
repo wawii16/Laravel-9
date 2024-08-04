@@ -5,16 +5,22 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MarketResource;
 use App\Models\Market;
+use App\Helpers\ApiHelpers;
 use Illuminate\Http\Request;
 
 class MarketController extends Controller
 {
     public function index()
     {
-        //get posts
-        $markets = Market::latest()->paginate(5);
+        try {
+            // Get markets
+            $markets = Market::latest()->paginate(5);
 
-        //return collection of posts as a resource
-        return new MarketResource(true, 'List Data Posts', $markets);
+            // Return collection of markets as a resource
+            $data = MarketResource::collection($markets);
+            return ApiHelpers::successResponse($data);
+        } catch (\Exception $e) {
+            return ApiHelpers::errorResponse(500);
+        }
     }
 }
