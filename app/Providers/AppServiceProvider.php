@@ -10,6 +10,9 @@ use App\Repositories\ProfileRepositoryInterface;
 use App\Repositories\BrandRepositoryInterface;
 use App\Services\BrandService;
 use App\Services\FileUploadService;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -7,7 +7,9 @@ use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
 use App\Http\Resources\BrandResource;
 use App\Services\BrandService;
+use App\Services\ProfileService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BrandController extends Controller
 {
@@ -18,15 +20,19 @@ class BrandController extends Controller
      */
 
 
+
     public function __construct(
-        protected BrandService $brandService
+        protected BrandService $brandService,
+        protected ProfileService $profileService
+
     ) {
     }
     public function index()
     {
+        $user = $this->profileService->getUserById(Auth::id());
         $pageTitle = 'Tambah Brand';
         $brands = $this->brandService->getAllBrands();
-        return view('brand.index', compact('brands', 'pageTitle'));
+        return view('brand.index', compact('brands', 'pageTitle', 'user'));
     }
 
     /**

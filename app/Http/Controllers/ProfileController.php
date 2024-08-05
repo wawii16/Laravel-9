@@ -52,9 +52,16 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        if (Auth::check()) {
+            // Pengguna sudah login
+            $user = $this->profileService->getUserById(Auth::id());
+            return view('welcome', compact('user'));
+        } else {
+            // Pengguna belum login, arahkan ke halaman login atau tampilkan pesan
+            return view('welcome');
+        }
     }
 
     /**
@@ -63,16 +70,12 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $pageTitle = 'Edit Profile';
-        $user = $this->profileService->getUserById($id);
+        $pageTitle = 'Edit Title';
+        $user = $this->profileService->getUserById(Auth::id());
 
-        if ($user->id !== Auth::id()) {
-            return redirect()->route('home')->with('error', 'You can only edit your own profile.');
-        }
-
-        return view('profile.edit', compact('user', 'pageTitle'));
+        return view('profile.edit', compact('user'));
     }
 
     /**
@@ -82,21 +85,18 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $user = $this->profileService->getUserById($id);
-
-        if ($user->id !== Auth::id()) {
-            return redirect()->route('home')->with('error', 'You can only update your own profile.');
-        }
+        $user = $this->profileService->getUserById(Auth::id());
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
             // Add other fields validation as needed
         ]);
 
-        $this->profileService->updateUser($id, $request->all());
+
+        $this->profileService->updateUser(Auth::id(), $request->all());
 
         return redirect()->route('profile.edit', $user->id)->with('success', 'Profile updated successfully.');
     }
