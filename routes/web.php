@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Models\Brand;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +48,8 @@ Route::get('logout', [AuthController::class, 'logout']);
 // });
 
 Route::resource('brands', BrandController::class)->middleware('auth');
+
+
+Route::middleware('auth')->group(function () {
+    Route::resource('profile', ProfileController::class)->only(['edit', 'update']);
+});

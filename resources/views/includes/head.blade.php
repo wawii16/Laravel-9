@@ -3,5 +3,4 @@
 <title>Document</title>
 <!-- Head content -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<script src="https://cdn.tailwindcss.com"></script>
 <script src="//unpkg.com/alpinejs" defer></script>

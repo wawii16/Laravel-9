@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Models\Brand;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\BrandRepository;
+use App\Repositories\ProfileRepository;
+use App\Repositories\ProfileRepositoryInterface;
 use App\Repositories\BrandRepositoryInterface;
 use App\Services\BrandService;
 use App\Services\FileUploadService;
@@ -18,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Bind ProfileRepositoryInterface to ProfileRepository
+        $this->app->bind(ProfileRepositoryInterface::class, ProfileRepository::class);
+
+
         $this->app->bind(BrandRepositoryInterface::class, BrandRepository::class);
         $this->app->singleton(FileUploadService::class);
 
