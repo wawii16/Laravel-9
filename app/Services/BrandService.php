@@ -37,6 +37,7 @@ class BrandService
         // Fetch the current brand data
         $currentBrand = $this->brandRepository->getBrandById($id);
 
+
         // Handle file upload for updates
         if (isset($data['photo'])) {
             // Delete the old photo file

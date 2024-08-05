@@ -26,7 +26,6 @@ class AppServiceProvider extends ServiceProvider
         // Bind ProfileRepositoryInterface to ProfileRepository
         $this->app->bind(ProfileRepositoryInterface::class, ProfileRepository::class);
 
-
         $this->app->bind(BrandRepositoryInterface::class, BrandRepository::class);
         $this->app->singleton(FileUploadService::class);
 

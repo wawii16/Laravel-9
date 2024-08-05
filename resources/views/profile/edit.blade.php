@@ -12,13 +12,18 @@
     </div>
     @endif
 
-    @if (session('error'))
+
+    @if ($errors->any())
     <div class="alert alert-danger">
-        {{ session('error') }}
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li class="text-red-600 list-disc mb-2 text-sm font-medium">{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
     @endif
 
-    <form method="POST" action="{{ route('profile.update', $user->id) }}">
+    <form method="POST" action="{{ route('profile.update', $user->id) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -31,6 +36,8 @@
             <label for="email">Email</label>
             <input type="email" name="email" class="form-control" value="{{ old('email', $user->email) }}" required>
         </div>
+        <input accept=".png, .jpg, .jpeg" name="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="photo" type="file">
+        <div class="mt-3 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help"></div>
 
         <!-- Add other fields as needed -->
 

@@ -92,9 +92,8 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
-            // Add other fields validation as needed
+            'photo' => 'sometimes|image|mimes:jpg,jpeg,png|max:2048',
         ]);
-
 
         $this->profileService->updateUser(Auth::id(), $request->all());
 
