@@ -72,10 +72,10 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $pageTitle = 'Edit Title';
+        $pageTitle = 'Edit Profile';
         $user = $this->profileService->getUserById(Auth::id());
 
-        return view('profile.edit', compact('user'));
+        return view('profile.edit', compact('user', 'pageTitle'));
     }
 
     /**

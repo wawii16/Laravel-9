@@ -9,9 +9,7 @@
 
 <body class="h-full">
     <div class="min-h-full">
-        <nav class="bg-green-700" x-data="{ isOpen: false }">
-            @include('includes.navbar')
-        </nav>
+        @include('includes.navbar')
         @if (session('message'))
         <div class="alert alert-info alert-dismissible fade show" role="alert">
             {{ session('message') }}
