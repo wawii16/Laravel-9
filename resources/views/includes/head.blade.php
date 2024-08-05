@@ -4,3 +4,4 @@
 <!-- Head content -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script src="//unpkg.com/alpinejs" defer></script>
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
