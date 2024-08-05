@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\MarketController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\AuthController;
-use App\Models\Market;
+use App\Models\Brand;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,14 +35,14 @@ Route::get('logout', [AuthController::class, 'logout']);
 // });
 
 // Route::middleware('auth')->prefix('/admin')->group(function () {
-//     Route::get('/', [MarketController::class, 'create'])->middleware('auth');
+//     Route::get('/', [BrandController::class, 'create'])->middleware('auth');
 
-//     Route::post('/add_market', [MarketController::class, 'store'])->name('market.add');
+//     Route::post('/add_brand', [BrandController::class, 'store'])->name('brand.add');
 
-//     Route::put('/add_market/{id}', [MarketController::class, 'update'])->name('market.update');
-//     Route::get('/add_market/{id}', [MarketController::class, 'edit'])->name('admin.edit_berita');
+//     Route::put('/add_brand/{id}', [BrandController::class, 'update'])->name('brand.update');
+//     Route::get('/add_brand/{id}', [BrandController::class, 'edit'])->name('admin.edit_berita');
 
-//     Route::delete('/add_market/{id}', [MarketController::class, 'destroy'])->name('market.destroy');
+//     Route::delete('/add_brand/{id}', [BrandController::class, 'destroy'])->name('brand.destroy');
 // });
 
-Route::resource('markets', MarketController::class)->middleware('auth');
+Route::resource('brands', BrandController::class)->middleware('auth');

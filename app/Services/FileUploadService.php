@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Repositories\MarketRepositoryInterface;
+use App\Repositories\BrandRepositoryInterface;
 
 use Illuminate\Support\Facades\File;
 
 class FileUploadService
 {
     public function __construct(
-        protected MarketRepositoryInterface $marketRepository,
+        protected BrandRepositoryInterface $brandRepository,
     ) {
     }
     public function uploadPhoto($photo)

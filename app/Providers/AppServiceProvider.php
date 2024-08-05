@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Models\Market;
+use App\Models\Brand;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\MarketRepository;
-use App\Repositories\MarketRepositoryInterface;
-use App\Services\MarketService;
+use App\Repositories\BrandRepository;
+use App\Repositories\BrandRepositoryInterface;
+use App\Services\BrandService;
 use App\Services\FileUploadService;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,12 +18,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(MarketRepositoryInterface::class, MarketRepository::class);
+        $this->app->bind(BrandRepositoryInterface::class, BrandRepository::class);
         $this->app->singleton(FileUploadService::class);
 
-        $this->app->bind(MarketService::class, function ($app) {
-            return new MarketService(
-                $app->make(MarketRepositoryInterface::class),
+        $this->app->bind(BrandService::class, function ($app) {
+            return new BrandService(
+                $app->make(BrandRepositoryInterface::class),
                 $app->make(FileUploadService::class)
             );
         });

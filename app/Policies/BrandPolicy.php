@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Market;
+use App\Models\Brand;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class MarketPolicy
+class BrandPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class MarketPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Market  $market
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Market $market)
+    public function view(User $user, Brand $brand)
     {
         //
     }
@@ -48,10 +48,10 @@ class MarketPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Market  $market
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Market $market)
+    public function update(User $user, Brand $brand)
     {
         //
     }
@@ -60,10 +60,10 @@ class MarketPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Market  $market
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Market $market)
+    public function delete(User $user, Brand $brand)
     {
         //
     }
@@ -72,10 +72,10 @@ class MarketPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Market  $market
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Market $market)
+    public function restore(User $user, Brand $brand)
     {
         //
     }
@@ -84,10 +84,10 @@ class MarketPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Market  $market
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Market $market)
+    public function forceDelete(User $user, Brand $brand)
     {
         //
     }

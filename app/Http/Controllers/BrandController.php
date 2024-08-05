@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Market;
-use App\Http\Requests\StoreMarketRequest;
-use App\Http\Requests\UpdateMarketRequest;
-use App\Http\Resources\MarketResource;
-use App\Services\MarketService;
+use App\Models\Brand;
+use App\Http\Requests\StoreBrandRequest;
+use App\Http\Requests\UpdateBrandRequest;
+use App\Http\Resources\BrandResource;
+use App\Services\BrandService;
 use Illuminate\Http\Request;
 
-class MarketController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,14 +19,14 @@ class MarketController extends Controller
 
 
     public function __construct(
-        protected MarketService $marketService
+        protected BrandService $brandService
     ) {
     }
     public function index()
     {
-        $pageTitle = 'Tambah Market';
-        $markets = $this->marketService->getAllMarkets();
-        return view('market.index', compact('markets', 'pageTitle'));
+        $pageTitle = 'Tambah Brand';
+        $brands = $this->brandService->getAllBrands();
+        return view('brand.index', compact('brands', 'pageTitle'));
     }
 
     /**
@@ -37,17 +37,17 @@ class MarketController extends Controller
     public function create(Request $request)
     {
         // $pageTitle = 'Admin';
-        // $markets = $this->marketService->getAllMarkets();
-        // return view('market.index', compact('markets', 'pageTitle'));
+        // $brands = $this->brandService->getAllBrands();
+        // return view('brand.index', compact('brands', 'pageTitle'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreMarketRequest  $request
+     * @param  \App\Http\Requests\StoreBrandRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMarketRequest $request)
+    public function store(StoreBrandRequest $request)
     {
         $validatedData = $request->validate([
             'store_name' => 'required',
@@ -55,17 +55,17 @@ class MarketController extends Controller
             'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $this->marketService->create($validatedData);
-        return redirect('/markets');
+        $this->brandService->create($validatedData);
+        return redirect('/brands');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Market  $market
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show(Market $market)
+    public function show(Brand $brand)
     {
         //
     }
@@ -73,20 +73,20 @@ class MarketController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Market  $market
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $pageTitle = 'Edit Market';
+        $pageTitle = 'Edit Brand';
 
-        $market = $this->marketService->getMarketById($id);
+        $brand = $this->brandService->getBrandById($id);
 
-        if (!$market) {
-            return redirect()->route('markets.index')->with('error', 'Market not found.');
+        if (!$brand) {
+            return redirect()->route('brands.index')->with('error', 'Brand not found.');
         }
 
-        return view('market.edit', compact('market', 'pageTitle'));
+        return view('brand.edit', compact('brand', 'pageTitle'));
     }
 
 
@@ -95,8 +95,8 @@ class MarketController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateMarketRequest  $request
-     * @param  \App\Models\Market  $market
+     * @param  \App\Http\Requests\UpdateBrandRequest  $request
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -107,20 +107,20 @@ class MarketController extends Controller
             'photo' => 'sometimes|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $market = $this->marketService->update($validatedData, $id);
+        $brand = $this->brandService->update($validatedData, $id);
 
-        return redirect('/markets');
+        return redirect('/brands');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Market  $market
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $this->marketService->delete($id);
-        return redirect('/markets');
+        $this->brandService->delete($id);
+        return redirect('/brands');
     }
 }

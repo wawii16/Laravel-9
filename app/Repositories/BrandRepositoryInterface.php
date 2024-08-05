@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-interface MarketRepositoryInterface
+interface BrandRepositoryInterface
 {
-    public function getAllMarkets();
-    public function getMarketById($id);
+    public function getAllBrands();
+    public function getBrandById($id);
     public function create(array $data);
     public function update(array $data, $id);
     public function delete(array $id);

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 
-@section('$pageTitle', 'Tambah Market')
+@section('$pageTitle', 'Tambah Brand')
 
 @section('content')
 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -14,7 +14,7 @@
         </ul>
     </div>
     @endif
-    <form action="{{ route('markets.store') }}" class="max-w-sm mx-auto" method="post" enctype="multipart/form-data">
+    <form action="{{ route('brands.store') }}" class="max-w-sm mx-auto" method="post" enctype="multipart/form-data">
         @csrf
 
 
@@ -52,20 +52,20 @@
 
             <tbody class="divide-y divide-neutral-800">
 
-                @foreach ($markets as $key => $market)
+                @foreach ($brands as $key => $brand)
                 <tr>
                     <td class="w-10 py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ $key + 1 }}</td>
-                    <td class="py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ $market->store_name }}</td>
-                    <td class="py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ $market->owner }}</td>
+                    <td class="py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ $brand->store_name }}</td>
+                    <td class="py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ $brand->owner }}</td>
                     <td class="py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800 text-center">
-                        <img class="w-10 h-10 sm:w-20 sm:h-20 object-cover" src="{{ url('/') }}/uploads/{{ $market->photo }}" alt="Gambar">
+                        <img class="w-10 h-10 sm:w-20 sm:h-20 object-cover" src="{{ url('/') }}/uploads/{{ $brand->photo }}" alt="Gambar">
                     </td>
                     <td class="py-1 px-2 text-xs sm:text-sm whitespace-nowrap border-b border-neutral-800 text-center">
                         <div class="flex justify-center items-center space-x-2">
-                            <a href="{{ route('markets.edit', ['market' => $market->id]) }}" class="bg-yellow-600 hover:bg-yellow-800 text-white font-bold py-1 px-2 sm:py-1 sm:px-3 rounded">
+                            <a href="{{ route('brands.edit', ['brand' => $brand->id]) }}" class="bg-yellow-600 hover:bg-yellow-800 text-white font-bold py-1 px-2 sm:py-1 sm:px-3 rounded">
                                 Edit
                             </a>
-                            <form action="{{ route('markets.destroy', $market->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <form action="{{ route('brands.destroy', $brand->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-2 sm:py-1 sm:px-3 rounded">
