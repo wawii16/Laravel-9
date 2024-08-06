@@ -28,13 +28,9 @@ Route::middleware('guest')->group(function () {
 
 Route::get('/', [ProfileController::class, 'show'])->name('home');
 
-
-
-Route::get('logout', [AuthController::class, 'logout']);
-
+Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::resource('brands', BrandController::class)->middleware('auth');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');

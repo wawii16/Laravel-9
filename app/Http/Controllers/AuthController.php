@@ -21,7 +21,6 @@ class AuthController extends Controller
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:6'
         ]);
-
         $user  = new User;
         $user->name = trim($request->name);
         $user->email = trim($request->email);
@@ -29,7 +28,6 @@ class AuthController extends Controller
         $user->remember_token = Str::random(50);
         $user->photo = '';
         $user->save();
-
         return redirect('login')->with('success', 'Register Success');
     }
     public function login_post(Request $request)
@@ -38,31 +36,20 @@ class AuthController extends Controller
             'email' => ['required'],
             'password' => ['required'],
         ]);
-
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
             return redirect()->intended('/')->with('success', 'Login Success');
         }
-
         return back()->withErrors([
             'email' => 'Email atau password salah',
         ]);;
     }
-
-    // dd($request->all());
-    // if (Auth::attempt(['name' => $request->name, 'password' => $request->password], true)) 
-    // {
-    //     return redirect('/')->with('success', 'Login Success');
-    // }
-
-
     public function login()
     {
 
         return view('login');
     }
-
     public function logout()
     {
         Auth::logout();

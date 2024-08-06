@@ -25,6 +25,8 @@
         </header>
         <!-- Header -->
         <main>
+            @include('sweetalert::alert')
+
             @yield('content')
         </main>
     </div>

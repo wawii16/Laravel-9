@@ -54,7 +54,7 @@
 
                 @foreach ($brands as $key => $brand)
                 <tr>
-                    <td class="w-10 py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ $key + 1 }}</td>
+                    <td class="w-10 py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ ++$key }}</td>
                     <td class="py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ $brand->store_name }}</td>
                     <td class="py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ $brand->owner }}</td>
                     <td class="py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800 text-center">
@@ -65,13 +65,9 @@
                             <a href="{{ route('brands.edit', ['brand' => $brand->id]) }}" class="bg-yellow-600 hover:bg-yellow-800 text-white font-bold py-1 px-2 sm:py-1 sm:px-3 rounded">
                                 Edit
                             </a>
-                            <form action="{{ route('brands.destroy', $brand->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-2 sm:py-1 sm:px-3 rounded">
-                                    Hapus
-                                </button>
-                            </form>
+
+                            <a href="{{ route('brands.destroy', $brand->id) }}" class="bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-2 sm:py-1 sm:px-3 rounded " data-confirm-delete="true">Delete</a>
+
 
                         </div>
                     </td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Brand;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
@@ -32,6 +33,10 @@ class BrandController extends Controller
         $user = $this->profileService->getUserById(Auth::id());
         $pageTitle = 'Tambah Brand';
         $brands = $this->brandService->getAllBrands();
+        $title = 'Delete Data!';
+
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         return view('brand.index', compact('brands', 'pageTitle', 'user'));
     }
 
@@ -63,6 +68,7 @@ class BrandController extends Controller
         ]);
 
         $this->brandService->create($validatedData);
+        Alert::success('Hore!', 'Brand Created Successfully');
         return redirect('/brands');
     }
 
@@ -87,6 +93,7 @@ class BrandController extends Controller
     {
         $pageTitle = 'Edit Brand';
         $user = $this->profileService->getUserById(Auth::id());
+
 
 
         $brand = $this->brandService->getBrandById($id);
@@ -126,6 +133,7 @@ class BrandController extends Controller
     public function destroy($id)
     {
         $this->brandService->delete($id);
+        alert()->success('Hore!', 'Post Deleted Successfully');
         return redirect('/brands');
     }
 }

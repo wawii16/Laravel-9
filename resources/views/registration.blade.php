@@ -11,7 +11,7 @@
 
     <div class="flex flex-wrap">
       <div class="bg-red-50 relative w-full self-center lg:w-2/3 flex items-center justify-center lg:h-screen">
-        <img src="{{ asset('assets/Logo.jpg') }}" alt="" class="object-scale-down w-full lg:h-48 hidden lg:block">
+        <img src="{{ asset('assets/Logo.jpg') }}" alt="" class="absolute object-scale-down w-full lg:h-48 hidden lg:block">
         <div class="absolute top-6 left-1/2 -translate-x-1/2">
           <h1 class="text-2xl font-bold">keyboard.me</h1>
         </div>
