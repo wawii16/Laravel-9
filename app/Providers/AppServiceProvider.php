@@ -12,7 +12,7 @@ use App\Services\BrandService;
 use App\Services\FileUploadService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -44,6 +44,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if (config('app.env') === 'prod') {
+            URL::forceScheme('https');
+        }
     }
 }

@@ -18,32 +18,20 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 |
 */
 
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('login_post', [AuthController::class, 'login_post']);
+
+    Route::get('/regist', [AuthController::class, 'registration']);
+    Route::post('registration_post', [AuthController::class, 'registration_post']);
+});
+
 Route::get('/', [ProfileController::class, 'show'])->name('home');
 
-Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
-Route::post('login_post', [AuthController::class, 'login_post']);
 
-Route::get('/regist', [AuthController::class, 'registration']);
-Route::post('registration_post', [AuthController::class, 'registration_post']);
 
 Route::get('logout', [AuthController::class, 'logout']);
 
-// Route::middleware('auth')->prefix('/profile')->group(function () {
-
-//     Route::put('/{id}', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::get('/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
-// });
-
-// Route::middleware('auth')->prefix('/admin')->group(function () {
-//     Route::get('/', [BrandController::class, 'create'])->middleware('auth');
-
-//     Route::post('/add_brand', [BrandController::class, 'store'])->name('brand.add');
-
-//     Route::put('/add_brand/{id}', [BrandController::class, 'update'])->name('brand.update');
-//     Route::get('/add_brand/{id}', [BrandController::class, 'edit'])->name('admin.edit_berita');
-
-//     Route::delete('/add_brand/{id}', [BrandController::class, 'destroy'])->name('brand.destroy');
-// });
 
 Route::resource('brands', BrandController::class)->middleware('auth');
 

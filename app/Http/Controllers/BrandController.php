@@ -55,6 +55,7 @@ class BrandController extends Controller
      */
     public function store(StoreBrandRequest $request)
     {
+
         $validatedData = $request->validate([
             'store_name' => 'required',
             'owner' => 'required',
@@ -85,14 +86,12 @@ class BrandController extends Controller
     public function edit($id)
     {
         $pageTitle = 'Edit Brand';
+        $user = $this->profileService->getUserById(Auth::id());
+
 
         $brand = $this->brandService->getBrandById($id);
 
-        if (!$brand) {
-            return redirect()->route('brands.index')->with('error', 'Brand not found.');
-        }
-
-        return view('brand.edit', compact('brand', 'pageTitle'));
+        return view('brand.edit', compact('brand', 'pageTitle', 'user'));
     }
 
 
