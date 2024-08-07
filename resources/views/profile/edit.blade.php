@@ -49,11 +49,16 @@
                 <label class="mb-3 font-semibold" for="email">Email</label>
                 <input type="email" name="email" class="form-control border border-slate-400 rounded-xl px-4 py-2" value="{{ old('email', $user->email) }}" required>
             </div>
+            <div class="form-group flex flex-col my-6">
+                <label for="birth_date" class="mb-3 font-semibold">Tanggal Lahir</label>
+                <input name="birth_date" value="{{ old('birth_date', $user->birth_date) }}" type="date" id="birth_date" class="form-control border border-slate-400 rounded-xl px-4 py-2" placeholder="" required />
+            </div>
 
             <div class="form-group flex flex-col my-6">
                 <!-- Hidden file input element -->
                 <input accept=".png, .jpg, .jpeg" name="photo" id="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50" aria-describedby="user_avatar_help" type="file" style="display: none;" onchange="previewImage(event)">
             </div>
+
 
             <button type="submit" class="bg-gray-900 text-white px-14 py-3 rounded-xl">Save Changes</button>
         </form>

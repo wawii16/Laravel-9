@@ -93,6 +93,7 @@ class ProfileController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
             'photo' => 'sometimes|image|mimes:jpg,jpeg,png|max:2048',
+            'birth_date' => 'date',
         ]);
 
         $this->profileService->updateUser(Auth::id(), $request->all());

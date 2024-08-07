@@ -27,6 +27,7 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->remember_token = Str::random(50);
         $user->photo = '';
+        $user->birth_date = null;
         $user->save();
         return redirect('login')->with('success', 'Register Success');
     }
