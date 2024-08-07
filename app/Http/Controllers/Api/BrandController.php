@@ -14,7 +14,7 @@ class BrandController extends Controller
     {
         try {
             // Get brands
-            $brands = Brand::latest()->paginate(5);
+            $brands = Brand::all();
 
             // Return collection of brands as a resource
             $data = BrandResource::collection($brands);
