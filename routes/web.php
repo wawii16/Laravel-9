@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SendEmail;
 use App\Models\Brand;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
@@ -36,3 +37,6 @@ Route::middleware('auth')->group(function () {
     Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
+
+
+Route::get('/send-newsletter', [SendEmail::class, 'sendNewsLetter'])->name('sendNewsLetter');

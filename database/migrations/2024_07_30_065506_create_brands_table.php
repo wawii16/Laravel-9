@@ -20,6 +20,16 @@ return new class extends Migration
             $table->string('photo');
             $table->timestamps();
         });
+
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('brand_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('photo');
+            $table->integer('harga');
+            $table->string('deskripsi');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -30,5 +40,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('brands');
+        Schema::dropIfExists('products');
     }
 };
