@@ -17,10 +17,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $users = User::all();
-        foreach ($users as $user) {
-            $schedule->job(new ProcessNewsletter($user))->everyMinute();
-        }
+        // $users = User::all();
+        // foreach ($users as $user) {
+        //     $schedule->job(new ProcessNewsletter($user))->everyMinute();
+        // }
     }
 
     /**

@@ -14,15 +14,19 @@ class NewsLetter extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
+    public $subject;
+    public $content;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user, $subject, $content)
     {
         $this->user = $user;
+        $this->subject = $subject;
+        $this->content = $content;
     }
 
     /**
@@ -33,7 +37,7 @@ class NewsLetter extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'News Letter',
+            subject: $this->subject,
 
         );
     }
@@ -47,6 +51,10 @@ class NewsLetter extends Mailable
     {
         return new Content(
             view: 'emails.newsletter',
+            with: [
+                'user' => $this->user,
+                'content' => $this->content, // Pass the dynamic content
+            ]
         );
     }
 

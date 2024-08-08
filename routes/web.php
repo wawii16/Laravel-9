@@ -39,4 +39,4 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/send-newsletter', [SendEmail::class, 'sendNewsLetter'])->name('sendNewsLetter');
+Route::post('/send-newsletter', [SendEmail::class, 'sendNewsLetter'])->name('sendNewsLetter');
