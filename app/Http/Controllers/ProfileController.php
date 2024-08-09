@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
+use App\Services\BrandService;
 use Illuminate\Http\Request;
 use App\Services\ProfileService;
 use Illuminate\Support\Facades\Auth;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProfileController extends Controller
 {
@@ -110,5 +112,11 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function export()
+    {
+        $brandService = app(BrandService::class); // or inject if possible
+        return Excel::download(new UsersExport($brandService), 'users.xlsx');
     }
 }

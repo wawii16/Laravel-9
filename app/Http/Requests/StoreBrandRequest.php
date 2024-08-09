@@ -24,7 +24,9 @@ class StoreBrandRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'store_name' => 'required',
+            'owner' => 'required',
+            'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ];
     }
 }

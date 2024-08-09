@@ -24,7 +24,9 @@ class UpdateBrandRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'store_name' => 'required',
+            'owner' => 'required',
+            'photo' => 'sometimes|image|mimes:jpg,jpeg,png|max:2048',
         ];
     }
 }

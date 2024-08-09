@@ -26,8 +26,7 @@ class BrandController extends Controller
         protected BrandService $brandService,
         protected ProfileService $profileService
 
-    ) {
-    }
+    ) {}
     public function index()
     {
         $user = $this->profileService->getUserById(Auth::id());
@@ -61,14 +60,10 @@ class BrandController extends Controller
     public function store(StoreBrandRequest $request)
     {
 
-        $validatedData = $request->validate([
-            'store_name' => 'required',
-            'owner' => 'required',
-            'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
+        $validatedData = $request->validated();
 
         $this->brandService->create($validatedData);
-        Alert::success('Hore!', 'Brand Created Successfully');
+        Alert::success('Success!', 'Brand Created Successfully');
         return redirect('/brands');
     }
 
@@ -111,15 +106,13 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBrandRequest $request, $id)
     {
-        $validatedData = $request->validate([
-            'store_name' => 'required',
-            'owner' => 'required',
-            'photo' => 'sometimes|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
+        $validatedData = $request->validated();
 
         $brand = $this->brandService->update($validatedData, $id);
+        Alert::success('Success!', 'Brand Edited Successfully');
+
 
         return redirect('/brands');
     }

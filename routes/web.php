@@ -40,3 +40,5 @@ Route::middleware('auth')->group(function () {
 
 
 Route::post('/send-newsletter', [SendEmail::class, 'sendNewsLetter'])->name('sendNewsLetter');
+
+Route::get('users/export/', [ProfileController::class, 'export']);
