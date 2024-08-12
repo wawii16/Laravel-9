@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SendEmail;
 use App\Models\Brand;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,7 @@ Route::get('/', [ProfileController::class, 'show'])->name('home');
 Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::resource('brands', BrandController::class)->middleware('auth');
+Route::resource('products', ProductController::class)->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
