@@ -20,7 +20,7 @@
                             <span class="mr-5">Admin</span>
                             <i :class="open ? 'fa-solid fa-chevron-right rotate-90' : 'fa-solid fa-chevron-right'" class="ml-2 transition-all duration-400"></i>
                         </button>
-                        <ul x-show="open" @click.away="open = false" x-transition class="space-y-1 pl-6 mb-2">
+                        <ul x-show="open" @click="open = false" x-transition class="space-y-1 pl-6 mb-2">
                             <li>
                                 <a href="/brands" class="block pl-2 py-2 text-sm font-medium rounded-md hover:bg-[#2b6afd] hover:text-white transition-colors duration-200 {{ request()->is('brands') ? 'bg-[#2b6afd] text-white' : 'text-black' }}">Brands</a>
                             </li>
