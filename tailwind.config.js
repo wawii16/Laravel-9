@@ -9,6 +9,7 @@ module.exports = {
     extend: {},
     fontFamily: {
       poppins: ['poppins'],
+      nunino: ['Nunito Sans']
     },
   },
   plugins: [],

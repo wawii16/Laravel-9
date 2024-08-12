@@ -22,9 +22,9 @@
     </div>
     @endif
     <div class="mt-4 mx-8">
-        <div class="flex bg-gray-200 px-4 py-10 rounded-lg">
+        <div class="flex bg-gray-300 px-4 py-10 rounded-lg">
             <div class="mx-auto">
-                <div class="relative lg:h-40 lg:w-40 h-20 w-20">
+                <div class="relative lg:h-40 lg:w-40 h-20 w-20 bg-slate-200 rounded-full">
                     <img id="previewImage" class="lg:h-40 lg:w-40 h-20 w-20 rounded-full object-cover" src="{{ asset('uploads/' . $user->photo) }}" alt="">
                     <label for="photo" class="cursor-pointer"><svg class="lg:h-14 lg:w-14 absolute right-0 bottom-0 h-7 w-7" width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="1.25" y="0.75" width="28.5" height="28.5" rx="14.25" fill="#141718" />

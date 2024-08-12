@@ -17,7 +17,7 @@
                             <p class="text-black my-auto mr-4">{{ $user->name }}</p>
 
                             <button type="button" @click="isOpen = !isOpen" 
-                            class="relative flex max-w-xs items-center rounded-full bg-[#4880FF] text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                            class="relative flex max-w-xs items-center rounded-full bg-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">Open user menu</span>
                                 <img class="h-10 w-10 rounded-full object-cover" src="{{ asset('uploads/' . $user->photo) }}" alt="">
