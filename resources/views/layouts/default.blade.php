@@ -11,7 +11,7 @@
 
 <body class="h-full">
     <div class="min-h-full">
-        @include('includes.sidebar') <!-- Include the sidebar here -->
+        @include('includes.sidebar')
 
         @include('includes.navbar')
         @if (session('message'))
@@ -20,7 +20,6 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-
 
         <header class="bg-slate-100">
             <title>@yield('$pageTitle', 'Dashboard')</title>
@@ -44,9 +43,9 @@
 
             // Function to toggle sidebar visibility
             function toggleSidebar() {
-                if (sidebar.classList.contains('hidden')) {
-                    sidebar.classList.remove('hidden');
-                    sidebar.classList.add('block');
+                if (sidebar.classList.contains('-translate-x-full')) {
+                    sidebar.classList.remove('-translate-x-full');
+                    sidebar.classList.add('translate-x-0');
                     navbar.classList.remove('ml-[0]');
                     navbar.classList.add('ml-[240px]');
                     header.classList.remove('ml-[0]');
@@ -55,8 +54,8 @@
                     mainContent.classList.add('ml-[240px]');
                     localStorage.setItem('sidebar', 'visible');
                 } else {
-                    sidebar.classList.remove('block');
-                    sidebar.classList.add('hidden');
+                    sidebar.classList.remove('translate-x-0');
+                    sidebar.classList.add('-translate-x-full');
                     navbar.classList.remove('ml-[240px]');
                     navbar.classList.add('ml-[0]');
                     header.classList.remove('ml-[240px]');
@@ -73,8 +72,8 @@
             // Check localStorage to set initial state
             const sidebarState = localStorage.getItem('sidebar');
             if (sidebarState === 'hidden') {
-                sidebar.classList.add('hidden');
-                sidebar.classList.remove('block');
+                sidebar.classList.add('-translate-x-full');
+                sidebar.classList.remove('translate-x-0');
                 navbar.classList.remove('ml-[240px]');
                 navbar.classList.add('ml-[0]');
                 header.classList.remove('ml-[240px]');
@@ -82,8 +81,8 @@
                 mainContent.classList.remove('ml-[240px]');
                 mainContent.classList.add('ml-[0]');
             } else {
-                sidebar.classList.add('block');
-                sidebar.classList.remove('hidden');
+                sidebar.classList.add('translate-x-0');
+                sidebar.classList.remove('-translate-x-full');
                 navbar.classList.remove('ml-[0]');
                 navbar.classList.add('ml-[240px]');
                 header.classList.remove('ml-[0]');
@@ -93,9 +92,6 @@
             }
         });
     </script>
-
-
-
 
 </body>
 

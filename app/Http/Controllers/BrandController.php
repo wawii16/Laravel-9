@@ -7,10 +7,13 @@ use App\Models\Brand;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
 use App\Http\Resources\BrandResource;
+use App\Imports\BrandsImport;
 use App\Services\BrandService;
 use App\Services\ProfileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BrandController extends Controller
 {
@@ -127,6 +130,17 @@ class BrandController extends Controller
     {
         $this->brandService->delete($id);
         alert()->success('Hore!', 'Post Deleted Successfully');
+        return redirect('/brands');
+    }
+
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DataBrands', $namaFile);
+
+        Excel::import(new BrandsImport, public_path('/DataBrands/' . $namaFile));
         return redirect('/brands');
     }
 }

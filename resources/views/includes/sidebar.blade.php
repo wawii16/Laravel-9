@@ -1,4 +1,4 @@
-<aside id="sidebar" class="font-nunino font-semibold border-r-2 shadow-lg z-50 w-[240px] h-screen bg-white text-white fixed top-0 left-0 block transition-all duration-200"
+<aside id="sidebar" class="font-nunino font-semibold border-r-2 shadow-lg z-50 w-[240px] h-screen bg-white text-white fixed top-0 left-0 block transition-transform duration-500 translate-x-0"
     x-data="{ open: localStorage.getItem('sidebarOpen') === 'true' || window.location.pathname.startsWith('/brands') || window.location.pathname.startsWith('/products') }"
     x-init="$watch('open', value => localStorage.setItem('sidebarOpen', value))">
 

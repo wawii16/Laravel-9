@@ -14,10 +14,32 @@
         </ul>
     </div>
     @endif
+
+    <div class="mb-8 flex w-full justify-end gap-3">
+        <a href="{{ route('brandsExport') }}" class="bg-[#2b6afd] px-7 py-3 rounded-lg font-poppins text-white text-sm">Export</a>
+        <!-- Open the modal using ID.showModal() method -->
+        <button class="bg-[#2b6afd] px-7 py-3 rounded-lg font-poppins text-white text-sm" onclick="modalImport.showModal()">Import</button>
+        <!-- You can open the modal using ID.showModal() method -->
+        <dialog id="modalImport" class="modal rounded-xl">
+            <div class="modal-box p-24 transition-all duration-200">
+                <div class="modal-action">
+                    <form action="{{ route('brandsImport') }}" class="max-w-sm mx-auto" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-5 border border-slate-500 px-5 py-5">
+                            <input type="file" name="file" id="">
+                        </div>
+                        <button type="submit" class="bg-[#2b6afd] px-7 py-3 rounded-lg font-poppins text-white text-sm">Import</button>
+                    </form>
+                    <form method="dialog">
+                        <!-- if there is a button, it will close the modal -->
+                        <button class="btn absolute right-2 top-2">✕</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+    </div>
     <form action="{{ route('brands.store') }}" class="max-w-sm mx-auto" method="post" enctype="multipart/form-data">
         @csrf
-
-
         <div class="mb-5">
             <label for="store_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Toko</label>
             <input name="store_name" value="{{ old('store_name') }}" type="store_name" id="store_name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="" required />
@@ -31,14 +53,7 @@
             <input accept=".png, .jpg, .jpeg" name="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="photo" type="file">
             <div class="mt-3 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help"></div>
         </div>
-
-
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tambah</button>
-
-
-
-
-
     </form>
     <h2 class="mt-5 text-lg font-semibold mb-5">Daftar Toko</h2>
     <div class="overflow-x-auto">
@@ -54,7 +69,6 @@
             </thead>
 
             <tbody class="divide-y divide-neutral-800">
-
                 @foreach ($brands as $key => $brand)
                 <tr>
                     <td class="w-10 py-1 px-2 text-xs sm:text-sm whitespace-wrap border-b border-neutral-800">{{ ++$key }}</td>
@@ -68,14 +82,9 @@
                             <a href="{{ route('brands.edit', ['brand' => $brand->id]) }}" class="bg-yellow-600 hover:bg-yellow-800 text-white font-bold py-1 px-2 sm:py-1 sm:px-3 rounded">
                                 Edit
                             </a>
-
                             <a href="{{ route('brands.destroy', $brand->id) }}" class="bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-2 sm:py-1 sm:px-3 rounded " data-confirm-delete="true">Delete</a>
-
-
                         </div>
                     </td>
-
-
                 </tr>
                 @endforeach
             </tbody>
