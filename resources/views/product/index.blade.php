@@ -26,7 +26,7 @@
             <label for="brand_id" class="block text-sm font-medium text-gray-700">Brand</label>
             <select id="brand_id" name="brand_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
                 @foreach ($brands as $brand)
-                    <option value="{{ $brand->id }}">{{ $brand->store_name }}</option>
+                <option value="{{ $brand->id }}">{{ $brand->store_name }}</option>
                 @endforeach
             </select>
         </div>
@@ -50,6 +50,6 @@
             <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Tambah Produk</button>
         </div>
     </form>
-    
+
 </div>
 @stop

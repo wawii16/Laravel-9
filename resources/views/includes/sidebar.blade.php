@@ -1,5 +1,5 @@
-<aside id="sidebar" class="font-nunino font-semibold border-r-2 shadow-lg z-50 w-[240px] h-screen bg-white text-white fixed top-0 left-0 block transition-all duration-200" 
-    x-data="{ open: localStorage.getItem('sidebarOpen') === 'true' || window.location.pathname.startsWith('/brands') || window.location.pathname.startsWith('/products') }" 
+<aside id="sidebar" class="font-nunino font-semibold border-r-2 shadow-lg z-50 w-[240px] h-screen bg-white text-white fixed top-0 left-0 block transition-all duration-200"
+    x-data="{ open: localStorage.getItem('sidebarOpen') === 'true' || window.location.pathname.startsWith('/brands') || window.location.pathname.startsWith('/products') }"
     x-init="$watch('open', value => localStorage.setItem('sidebarOpen', value))">
 
     <div class="flex flex-col h-full">
@@ -15,21 +15,21 @@
                         <i class="fa-solid fa-gauge my-auto mx-4"></i> Dashboard
                     </a>
                     @auth
-                    <li class="mx-6">
-                        <button @click="open = !open" class="w-full flex items-center justify-between py-4 px-4 rounded-md text-sm font-medium text-black transition-colors duration-200">
-                            <i class="fa-solid fa-user-tie"></i>
-                            <span class="mr-5">Admin</span>
-                            <i :class="open ? 'fa-solid fa-chevron-right rotate-90' : 'fa-solid fa-chevron-right'" class="ml-2 transition-all duration-400"></i>
-                        </button>
-                        <ul x-show="open" @click="open = false" x-transition class="space-y-1 py-4 px-6 mb-2 border rounded-xl shadow-md">
-                            <li>
-                                <a href="/brands" class="block pl-2 py-2 text-xs font-medium rounded-md hover:bg-[#2b6afd] hover:text-white transition-colors duration-200 {{ request()->is('brands') ? 'bg-[#2b6afd] text-white' : 'text-black' }}"><i class="fa-solid fa-file-contract mr-2"></i>Brands</a>
-                            </li>
-                            <li>
-                                <a href="/products" class="block pl-2 py-2 text-xs font-medium rounded-md hover:bg-[#2b6afd] hover:text-white transition-colors duration-200 {{ request()->is('products') ? 'bg-[#2b6afd] text-white' : 'text-black' }}"><i class="fa-solid fa-warehouse mr-2"></i>Products</a>
-                            </li>
-                        </ul>
-                    </li>
+                <li class="mx-6">
+                    <button @click="open = !open" class="w-full flex items-center justify-between py-4 px-4 rounded-md text-sm font-medium text-black transition-colors duration-200">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <span class="mr-5">Admin</span>
+                        <i :class="open ? 'fa-solid fa-chevron-right rotate-90' : 'fa-solid fa-chevron-right'" class="ml-2 transition-all duration-400"></i>
+                    </button>
+                    <ul x-show="open" @click="open = false" x-transition class="space-y-1 py-4 px-6 mb-2 border rounded-xl shadow-md">
+                        <li>
+                            <a href="/brands" class="block pl-2 py-2 text-xs font-medium rounded-md hover:bg-[#2b6afd] hover:text-white transition-colors duration-200 {{ request()->is('brands') ? 'bg-[#2b6afd] text-white' : 'text-black' }}"><i class="fa-solid fa-file-contract pr-3"></i><span class="ml-1">Brands</span></a>
+                        </li>
+                        <li>
+                            <a href="/products" class="block pl-2 py-2 text-xs font-medium rounded-md hover:bg-[#2b6afd] hover:text-white transition-colors duration-200 {{ request()->is('products') ? 'bg-[#2b6afd] text-white' : 'text-black' }}"><i class="fa-solid fa-warehouse pr-3"></i><span class="ml-1">Products</span></a>
+                        </li>
+                    </ul>
+                </li>
 
                 </li>
             </ul>
