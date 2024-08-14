@@ -5,7 +5,7 @@
 
 @section('content')
 
-
+@auth
 <form class="max-w-sm px-4 sm:px-6 lg:px-8" action="{{ route('sendNewsLetter') }}" method="POST">
     @csrf
     <div class="mb-5">
@@ -21,6 +21,9 @@
 
     <button class="px-4 py-2 bg-[#2b6afd] text-white rounded-lg hover:bg-blue-700" type="submit">Send Newsletter</button>
 </form>
+
+@else
+@endauth
 
 
 @stop
