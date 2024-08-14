@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 
-@section('$pageTitle', 'Tambah Brand')
+@section('$pageTitle', 'Tambah Product')
 
 @section('content')
 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -14,17 +14,17 @@
         </ul>
     </div>
     @endif
-    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" class="max-w-sm">
         @csrf
 
         <div class="mb-4">
-            <label for="name" class="block text-sm font-medium text-gray-700">Nama Produk</label>
-            <input type="text" id="name" name="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Produk</label>
+            <input type="text" id="name" name="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
         </div>
 
         <div class="mb-4">
-            <label for="brand_id" class="block text-sm font-medium text-gray-700">Brand</label>
-            <select id="brand_id" name="brand_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+            <label for="brand_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
+            <select id="brand_id" name="brand_id" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
                 @foreach ($brands as $brand)
                 <option value="{{ $brand->id }}">{{ $brand->store_name }}</option>
                 @endforeach
@@ -32,18 +32,18 @@
         </div>
 
         <div class="mb-4">
-            <label for="photo" class="block text-sm font-medium text-gray-700">Foto Produk</label>
-            <input type="file" id="photo" name="photo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+            <label for="photo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto Produk</label>
+            <input type="file" id="photo" name="photo" class="text-sm block p-2.5 " required>
         </div>
 
         <div class="mb-4">
-            <label for="harga" class="block text-sm font-medium text-gray-700">Harga</label>
-            <input type="number" id="harga" name="harga" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+            <label for="harga" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga</label>
+            <input type="number" id="harga" name="harga" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
         </div>
 
         <div class="mb-4">
-            <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi</label>
-            <textarea id="deskripsi" name="deskripsi" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required></textarea>
+            <label for="deskripsi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
+            <textarea id="deskripsi" name="deskripsi" rows="4" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required></textarea>
         </div>
 
         <div>

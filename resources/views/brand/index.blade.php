@@ -38,7 +38,7 @@
             </div>
         </dialog>
     </div>
-    <form action="{{ route('brands.store') }}" class="max-w-sm mx-auto" method="post" enctype="multipart/form-data">
+    <form action="{{ route('brands.store') }}" class="max-w-sm" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-5">
             <label for="store_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Toko</label>
@@ -52,6 +52,10 @@
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="photo">Upload file</label>
             <input accept=".png, .jpg, .jpeg" name="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="photo" type="file">
             <div class="mt-3 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help"></div>
+        </div>
+        <div class="mb-5">
+            <label for="founded_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Berdiri</label>
+            <input name="founded_date" value="{{ old('founded_date') }}" type="date" id="founded_date" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="" required />
         </div>
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tambah</button>
     </form>

@@ -27,6 +27,8 @@ class UpdateBrandRequest extends FormRequest
             'store_name' => 'required',
             'owner' => 'required',
             'photo' => 'sometimes|image|mimes:jpg,jpeg,png|max:2048',
+            'founded_date' => 'required|date',
+
         ];
     }
 }

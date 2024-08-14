@@ -23,10 +23,11 @@ class UsersExport implements FromCollection, WithHeadings
         return [
             'No',
             'Store_name',
+            'Founded_date',
             'Owner',
             'Foto',
-            'Dibuat tanggal',
-            'Diedit tanggal'
+            'Created_at',
+            'Edited_at'
         ];
     }
     public function collection()

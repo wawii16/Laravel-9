@@ -27,6 +27,7 @@ class StoreBrandRequest extends FormRequest
             'store_name' => 'required',
             'owner' => 'required',
             'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'founded_date' => 'required|date',
         ];
     }
 }
